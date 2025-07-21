@@ -1,0 +1,8 @@
+/* Prevent horizontal scroll and always show vertical scrollbar */
+html {
+  overflow-y: scroll;
+}
+
+body {
+  overflow-x: hidden;
+}
