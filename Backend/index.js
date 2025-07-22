@@ -277,9 +277,7 @@ app.get("/cart/checkout/:user_id", async (req, res) => {
 
 // ✅ users during sign up 
 app.post("/users", async (req, res) => {
-    console.log("im here1")
     const { userId, name, email, mobile, address, birthday, postal_code, gender } = req.body;
-    console.log(req.body)
     try {
         const result = await pool.query("INSERT INTO users(user_id,name,email,mobile,address,birthday,postal_code,gender,created_at)VALUES ($1,$2,$3,$4,$5,$6,$7,$8,NOW())", [userId, name, email, mobile, address, birthday, postal_code, gender]);
         return res.status(200).json(result.rows);
