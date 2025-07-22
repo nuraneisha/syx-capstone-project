@@ -121,12 +121,13 @@ export default function ShoppingCart() {
             return;
         }
         try {
+            console.log("Sending to backend:", { items: selected, user_id: userId });
             const res = await fetch("http://localhost:3001/checkout", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ items: selected }), // use selected state directly
+                body: JSON.stringify({ items: selected, user_id: userId }), // use selected state directly
             });
 
             const data = await res.json();

@@ -155,7 +155,6 @@ app.get("/products/:prod_id", async (req, res) => {
     const client = await pool.connect();
     try {
         const prod_id = req.params.prod_id;
-        console.log(prod_id);
         const result = await client.query("SELECT * FROM product WHERE prod_id = $1", [prod_id]);
         res.status(200).json(result.rows[0]);
     } catch (error) {
@@ -245,7 +244,6 @@ app.put("/cart/select", async (req, res) => {
     const { selected, quantity, id } = req.body;
     try {
         const result = await pool.query("UPDATE cart SET selected = $1,quantity = $2 WHERE id = $3 RETURNING *", [selected, quantity, id]);
-        console.log(result);
         return res.status(200).json(result.rows[0]);
     } catch (err) {
         console.error("Select Error:", err);
@@ -277,10 +275,50 @@ app.get("/cart/checkout/:user_id", async (req, res) => {
     }
 });
 
+// ✅ users
+app.post("/users", async (req, res) => {
+    const { userId, name, email, mobile, address, birthday, postal_code, gender } = req.body;
+    try {
+        const result = await pool.query("INSERT INTO users(user_id,name,email,mobile,address,birthday,postal_code,gender,created_at)VALUES ($1,$2,$3,$4,$5,$6,$7,$8,NOW())", [user_id, name, email, mobile, address, birthday, postal_code, gender]);
+        return res.status(200).json(result.rows);
+    } catch (err) {
+        console.error("Insert User Error:", err);
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// ✅ select users info
+app.get("/users/:user_id", async (req, res) => {
+    const { user_id } = req.params
+    try {
+        const result = await pool.query("SELECT *FROM users where user_id = $1", [user_id]);
+        return res.status(200).json(result.rows[0]);
+    } catch (err) {
+        console.error("Select User Error:", err);
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// ✅ purchase history
+app.get("/purchaseHistory/:user_id", async (req, res) => {
+    const { user_id } = req.params
+    try {
+        const result = await pool.query("SELECT * from purchase_history WHERE user_id=$1", [user_id]);
+        return res.status(200).json(result.rows);
+    } catch (err) {
+        console.error("Select User Error:", err);
+        res.status(500).json({ error: err.message });
+    }
+});
+
 // ✅ checkout using stripe
 app.post("/checkout", async (req, res) => {
-    const { items } = req.body;
+    const { items, user_id } = req.body;
     try {
+
+        const result = await pool.query(`SELECT * FROM cart WHERE user_id = $1 AND selected = true`, [user_id]);
+        const selectedItems = result.rows;
+
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ["card", "fpx"],
             mode: "payment",
@@ -302,6 +340,24 @@ app.post("/checkout", async (req, res) => {
             success_url: "http://localhost:5173",
             cancel_url: "http://localhost:5173/shopping",
         });
+
+
+        for (const item of selectedItems) {
+            await pool.query(`INSERT INTO purchase_history (user_id, prod_id, prod_name, prod_education, prod_price, sizes, quantity,created_at)VALUES ($1, $2, $3, $4, $5, $6, $7,NOW())`,
+                [
+                    item.user_id,
+                    item.prod_id,
+                    item.prod_name,
+                    item.prod_education,
+                    item.prod_price,
+                    item.sizes,
+                    item.quantity,
+                ]
+            )
+
+        }
+
+        await pool.query(`DELETE FROM cart WHERE user_id = $1 AND selected = true`, [user_id]);
 
         res.status(200).json({ url: session.url });
     } catch (error) {

@@ -14,6 +14,12 @@ import { useNavigate } from "react-router-dom";
 export default function Login({ show, setShow }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [mobile, setMobile] = useState("");
+    const [address, setAddress] = useState("");
+    const [birthday, setBirthday] = useState("");
+    const [postal_code, setPostalCode] = useState("");
+    const [gender, setGender] = useState("");
+    const [name, setName] = useState("");
     const [formMode, setFormMode] = useState(false);
     const [signUp, setSignUp] = useState(false);
     const [error, setError] = useState("");
@@ -58,6 +64,24 @@ export default function Login({ show, setShow }) {
             //send verification email
             await sendEmailVerification(userCredential.user);
 
+            const user_id = userCredential.user.uid;
+
+            await fetch("http://localhost:3001/users", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    user_id,
+                    name,
+                    email,
+                    mobile,
+                    address,
+                    birthday,
+                    postal_code,
+                    gender,
+                }),
+            })
+
+
             alert("Verification email sent. Please check your spam/junk folder or inbox.");
             handleClose();
         }
@@ -80,6 +104,12 @@ export default function Login({ show, setShow }) {
         setSignUp(false);
         setEmail("");
         setPassword("");
+        setMobile("");
+        setAddress("");
+        setBirthday("");
+        setPostalCode("");
+        setGender("");
+        setName("");
         setError("");
     };
     return (
@@ -129,6 +159,71 @@ export default function Login({ show, setShow }) {
                                             required
                                         />
                                     </Form.Group>
+                                    {signUp && (
+                                        <>
+                                            <Form.Group controlId="name" className="mb-3">
+                                                <Form.Label>Name:</Form.Label>
+                                                <Form.Control
+                                                    placeholder="Wonder Women"
+                                                    type="text"
+                                                    value={name}
+                                                    onChange={(event) => setName(event.target.value)}
+                                                    required
+                                                />
+                                            </Form.Group>
+                                            <Form.Group controlId="mobile" className="mb-3">
+                                                <Form.Label>Mobile:</Form.Label>
+                                                <Form.Control
+                                                    placeholder="01234567890"
+                                                    type="text"
+                                                    value={mobile}
+                                                    onChange={(event) => setMobile(event.target.value)}
+                                                    required
+
+                                                />
+                                            </Form.Group>
+                                            <Form.Group controlId="address" className="mb-3">
+                                                <Form.Label>Address:</Form.Label>
+                                                <Form.Control
+                                                    placeholder="10A-23-15 IDAMAN GREENLANE 40150 SHAH ALAM"
+                                                    type="text"
+                                                    value={address}
+                                                    onChange={(event) => setAddress(event.target.value)}
+                                                    required
+
+                                                />
+                                            </Form.Group>
+                                            <Form.Group controlId="postalCode" className="mb-3">
+                                                <Form.Label>Postal Code:</Form.Label>
+                                                <Form.Control
+                                                    placeholder="12340"
+                                                    type="text"
+                                                    value={postal_code}
+                                                    onChange={(event) => setPostalCode(event.target.value)}
+                                                    required
+                                                />
+                                            </Form.Group>
+                                            <Form.Group controlId="birthday" className="mb-3">
+                                                <Form.Label>Birthday:</Form.Label>
+                                                <Form.Control
+                                                    type="date"
+                                                    value={birthday}
+                                                    onChange={(event) => setBirthday(event.target.value)}
+                                                    required
+
+                                                />
+                                            </Form.Group>
+                                            <Form.Group controlId="gender" className="mb-3">
+                                                <Form.Label>Gender:</Form.Label>
+                                                <Form.Select value={gender} onChange={(e) => setGender(e.target.value)} required>
+                                                    <option value="">Select</option>
+                                                    <option value="female">Female</option>
+                                                    <option value="male">Male</option>
+                                                </Form.Select>
+                                            </Form.Group>
+                                        </>
+
+                                    )}
 
                                     <p style={{ fontSize: "12px" }}>
                                         By signing up, you agree to the Terms of Service and Privacy Policy. SYX may use your contact
@@ -139,6 +234,7 @@ export default function Login({ show, setShow }) {
                                         {signUp ? "Sign Up" : "Sign In"}
                                     </Button>
                                 </Form>
+
 
                                 {error && <p className="mt-3 text-danger">{error}</p>}
                                 <p className="text-center mt-3" style={{ fontSize: "14px" }}>

@@ -11,24 +11,14 @@ export default function About() {
                 <Container fluid className="px-4 py-3">
                     <Row>
                         <Col xs={12} md={4} className="text-center mb-4 mb-md-0" style={{ fontWeight: "bold", padding: "30px" }}>
-                            <h2 className="mb-3" style={{ cursor: "pointer" }} onClick={() => navigate("/about")}>Company Info</h2>
-                            <h2 className="mb-3" style={{ cursor: "pointer" }} onClick={() => navigate("/ourWay")}>Our Way</h2>
+                            <h2 className="mt-3">Company</h2>
+                            <h2 style={{ cursor: "pointer", marginTop: "20px", fontWeight: "normal", fontSize: "25px" }} onClick={() => navigate("/about")}>About</h2>
+                            <h2 style={{ cursor: "pointer", marginTop: "20px", fontWeight: "normal", fontSize: "25px" }} onClick={() => navigate("/ourWay")}>Our Way</h2>
                         </Col>
 
                         <Col xs={12} md={8}>
                             <h1>Company Information</h1>
-                            <div
-                                style={{
-                                    gap: "2rem",
-                                    marginBottom: "30px",
-                                    marginTop: "25px",
-                                    maxWidth: "100%",
-                                    border: "1px solid black",
-                                    padding: "30px",
-                                    textAlign: "left"
-                                }}
-                                className="mx-auto"
-                            >
+                            <div style={{ gap: "2rem", marginBottom: "30px", marginTop: "25px", maxWidth: "100%", border: "1px solid black", padding: "30px", textAlign: "left" }} className="mx-auto">
                                 <h2 style={{ fontWeight: "bold" }}>Company Name</h2>
                                 <p>SYX SDN.BHD</p>
                                 <p>Registration Number : 201001020259 (904035-Z) </p>

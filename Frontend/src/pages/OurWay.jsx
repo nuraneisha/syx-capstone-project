@@ -10,13 +10,10 @@ export default function OurWay() {
             <Container fluid className="px-4">
                 <Row className="gy-4">
                     {/* Left Side Navigation */}
-                    <Col xs={12} md={4} className="text-center fw-bold py-4">
-                        <h2 className="mb-3" style={{ cursor: "pointer" }} onClick={() => navigate("/about")}>
-                            Company Info
-                        </h2>
-                        <h2 className="mb-3" style={{ cursor: "pointer" }} onClick={() => navigate("/ourWay")}>
-                            Our Way
-                        </h2>
+                    <Col xs={12} md={4} className="text-center mb-4 mb-md-0" style={{ fontWeight: "bold", padding: "30px" }}>
+                        <h2 className="mt-3">Company</h2>
+                        <h2 style={{ cursor: "pointer", marginTop: "20px", fontWeight: "normal", fontSize: "25px" }} onClick={() => navigate("/about")}>About</h2>
+                        <h2 style={{ cursor: "pointer", marginTop: "20px", fontWeight: "normal", fontSize: "25px" }} onClick={() => navigate("/ourWay")}>Our Way</h2>
                     </Col>
 
                     {/* Right Content Section */}

@@ -109,7 +109,7 @@ export default function Header({ setShowLogin }) {
                                                 </span>
                                             )}
                                         </Nav.Link>
-                                        <Nav.Link>
+                                        <Nav.Link onClick={() => navigate("/profile")}>
                                             <i style={{ fontSize: "30px" }} className="bi bi-person-circle me-2"></i>
                                         </Nav.Link>
                                         <Nav.Link onClick={handleLogout}>

@@ -10,8 +10,10 @@ import Location from "./pages/Location"
 import Store from "./pages/Store"
 import Tops from "./pages/Tops"
 import Card from "./pages/Cards";
+import Profile from "./pages/Profile";
 import { AuthProvider } from "./context/AuthProvider";
 import ShoppingCart from "./pages/ShoppingCart";
+import PurchaseHistory from "./pages/PurchaseHistory";
 
 
 export default function App() {
@@ -31,6 +33,8 @@ export default function App() {
                     <Route path="/store" element={<Store />} />
                     <Route path="/card/:id" element={<Card />} />
                     <Route path="/shopping" element={<ShoppingCart />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/purchaseHistory" element={<PurchaseHistory />} />
                 </Routes>
             </BrowserRouter>
         </AuthProvider>
