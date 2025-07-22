@@ -43,8 +43,8 @@ export default function PurchaseHistory() {
                             <h2 style={{ fontWeight: "normal", cursor: "pointer" }} onClick={() => navigate("/profile")}>Profile</h2>
                             <h2 style={{ fontWeight: "normal", cursor: "pointer" }} onClick={() => navigate("/purchaseHistory")}>Purchased History</h2>
                             <h2>Profile Setting</h2>
-                            <h2 style={{ fontWeight: "normal", cursor: "pointer" }}>Edit Profile</h2>
-                            <h2 style={{ fontWeight: "normal", cursor: "pointer" }}>Withdrawal from membership</h2>
+                            <h2 style={{ fontWeight: "normal", cursor: "pointer" }} onClick={() => navigate("/update")}>Edit Profile</h2>
+                            <h2 style={{ fontWeight: "normal", cursor: "pointer" }} onClick={() => navigate("/delete")}>Withdrawal from membership</h2>
                         </div>
                     </Col>
 

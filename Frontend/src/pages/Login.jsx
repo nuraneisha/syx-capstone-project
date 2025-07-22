@@ -70,7 +70,7 @@ export default function Login({ show, setShow }) {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    user_id,
+                    userId: user_id,
                     name,
                     email,
                     mobile,

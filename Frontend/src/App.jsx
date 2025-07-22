@@ -14,6 +14,8 @@ import Profile from "./pages/Profile";
 import { AuthProvider } from "./context/AuthProvider";
 import ShoppingCart from "./pages/ShoppingCart";
 import PurchaseHistory from "./pages/PurchaseHistory";
+import Update from "./pages/Update";
+import DeleteAccount from "./pages/DeleteAccount";
 
 
 export default function App() {
@@ -35,6 +37,8 @@ export default function App() {
                     <Route path="/shopping" element={<ShoppingCart />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/purchaseHistory" element={<PurchaseHistory />} />
+                    <Route path="/update" element={<Update />} />
+                    <Route path="/delete" element={<DeleteAccount />} />
                 </Routes>
             </BrowserRouter>
         </AuthProvider>

@@ -275,11 +275,13 @@ app.get("/cart/checkout/:user_id", async (req, res) => {
     }
 });
 
-// ✅ users
+// ✅ users during sign up 
 app.post("/users", async (req, res) => {
+    console.log("im here1")
     const { userId, name, email, mobile, address, birthday, postal_code, gender } = req.body;
+    console.log(req.body)
     try {
-        const result = await pool.query("INSERT INTO users(user_id,name,email,mobile,address,birthday,postal_code,gender,created_at)VALUES ($1,$2,$3,$4,$5,$6,$7,$8,NOW())", [user_id, name, email, mobile, address, birthday, postal_code, gender]);
+        const result = await pool.query("INSERT INTO users(user_id,name,email,mobile,address,birthday,postal_code,gender,created_at)VALUES ($1,$2,$3,$4,$5,$6,$7,$8,NOW())", [userId, name, email, mobile, address, birthday, postal_code, gender]);
         return res.status(200).json(result.rows);
     } catch (err) {
         console.error("Insert User Error:", err);
@@ -310,6 +312,32 @@ app.get("/purchaseHistory/:user_id", async (req, res) => {
         res.status(500).json({ error: err.message });
     }
 });
+
+// ✅ update user profile
+app.post("/update/:user_id", async (req, res) => {
+    const { user_id } = req.params
+    const { name, address, postal_code, mobile, gender } = req.body;
+    try {
+        const result = await pool.query("UPDATE users SET  name=$1,address=$2,postal_code=$3,mobile=$4,gender=$5 WHERE user_id=$6 RETURNING *", [name, address, postal_code, mobile, gender, user_id]);
+        return res.status(200).json({ message: "Profile updated succesfully", data: result.rows });
+    } catch (err) {
+        console.error("Profile is not updated:", err);
+        res.status(500).json({ error: err.message });
+    }
+});
+
+// ✅ delete user
+app.delete("/delete/:user_id", async (req, res) => {
+    const { user_id } = req.params
+    try {
+        const result = await pool.query("DELETE FROM users WHERE user_id=$1 ", [user_id]);
+        return res.status(200).json({ message: "Profile deleted succesfully", data: result.rows });
+    } catch (err) {
+        console.error("Profile did not deleted:", err);
+        res.status(500).json({ error: err.message });
+    }
+});
+
 
 // ✅ checkout using stripe
 app.post("/checkout", async (req, res) => {
