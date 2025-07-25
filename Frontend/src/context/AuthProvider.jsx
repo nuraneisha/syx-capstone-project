@@ -8,16 +8,11 @@ export function AuthProvider({ children }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(async (user) => {
-            if (user) {
-                await user.reload();
-                setCurrentUser(user); // ✅ use the reloaded user directly
-            } else {
-                setCurrentUser(null);
-            }
+        const unsubscribe = auth.onAuthStateChanged((async (user) => {
+            console.log(user);
+            setCurrentUser(user);
             setLoading(false);
-        });
-
+        }));
 
         // Cleanup listener on unmount
         return unsubscribe;
