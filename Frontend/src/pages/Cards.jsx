@@ -53,6 +53,10 @@ export default function Cards() {
                 return;
             }
             try {
+                if (!selectSize || selectSize.length === 0) {
+                    alert("Please choose a size");
+                    return;
+                }
                 const response = await fetch(`http://localhost:3001/products/card/${id}`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },

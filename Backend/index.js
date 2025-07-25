@@ -217,7 +217,7 @@ app.post("/products/apparel/:prod_id", async (req, res) => {
 app.get("/cart/:userId", async (req, res) => {
     const { userId } = req.params;
     try {
-        const result = await pool.query("SELECT * FROM cart WHERE user_id = $1 ORDER BY id ASC", [userId]);
+        const result = await pool.query("SELECT cart.*, product.prod_category FROM cart JOIN product ON cart.prod_id = product.prod_id WHERE cart.user_id = $1 ORDER BY cart.id ASC", [userId]);
         return res.status(200).json({ items: result.rows });
     } catch (err) {
         console.error("Cart Count Error:", err);
@@ -291,7 +291,7 @@ app.post("/users", async (req, res) => {
 app.get("/users/:user_id", async (req, res) => {
     const { user_id } = req.params
     try {
-        const result = await pool.query("SELECT *FROM users where user_id = $1", [user_id]);
+        const result = await pool.query("SELECT users.*,purchase_history.*,product.prod_category FROM users JOIN purchase_history ON users.user_id = purchase_history.user_id JOIN product ON purchase_history.prod_id = product.prod_id WHERE users.user_id = $1", [user_id]);
         return res.status(200).json(result.rows[0]);
     } catch (err) {
         console.error("Select User Error:", err);
@@ -303,7 +303,7 @@ app.get("/users/:user_id", async (req, res) => {
 app.get("/purchaseHistory/:user_id", async (req, res) => {
     const { user_id } = req.params
     try {
-        const result = await pool.query("SELECT * from purchase_history WHERE user_id=$1", [user_id]);
+        const result = await pool.query("SELECT purchase_history.*,product.prod_category from purchase_history join product ON purchase_history.prod_id = product.prod_id WHERE user_id=$1", [user_id]);
         return res.status(200).json(result.rows);
     } catch (err) {
         console.error("Select User Error:", err);

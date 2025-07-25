@@ -16,7 +16,8 @@ import ShoppingCart from "./pages/ShoppingCart";
 import PurchaseHistory from "./pages/PurchaseHistory";
 import Update from "./pages/Update";
 import DeleteAccount from "./pages/DeleteAccount";
-
+import ReviewForm from "./pages/ReviewForm";
+import Review from "./components/Review";
 
 export default function App() {
 
@@ -39,6 +40,8 @@ export default function App() {
                     <Route path="/purchaseHistory" element={<PurchaseHistory />} />
                     <Route path="/update" element={<Update />} />
                     <Route path="/delete" element={<DeleteAccount />} />
+                    <Route path="/review/form" element={<ReviewForm />} />
+                    <Route path="/review" element={<Review />} />
                 </Routes>
             </BrowserRouter>
         </AuthProvider>

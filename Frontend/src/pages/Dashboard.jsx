@@ -1,17 +1,14 @@
 import Layout from "../components/Layout";
-import Body from "../components/Body";
-import { useState } from "react";
-import Login from "./Login"
-
+import Body from "../components/Body"
 export default function Dashboard() {
-    const [showLogin, setShowLogin] = useState(false);
+
 
     return (
         <>
-            <Layout setShowLogin={setShowLogin}>
+            <Layout>
                 <Body />
             </Layout>
-            <Login show={showLogin} setShow={setShowLogin} />
+
         </>
     );
 }

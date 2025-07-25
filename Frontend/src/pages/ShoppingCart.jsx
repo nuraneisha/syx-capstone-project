@@ -29,7 +29,7 @@ export default function ShoppingCart() {
                     initialSelected[item.id] = item.selected; // initialize selection
                 });
                 setQuantities(initialQuantities);
-                setSelectedItems(initialSelected); // ← new state for checkbox
+                setSelectedItems(initialSelected);
             }
         } catch (error) {
             console.error("Error fetching the data", error);
@@ -193,9 +193,13 @@ export default function ShoppingCart() {
                                     <Col md={4} className="g-5">
                                         <Card.Text style={{ fontWeight: "bold", fontSize: "30px" }}>{prod.prod_name}</Card.Text>
                                         <Card.Text style={{ fontSize: "25px" }}>{prod.sizes}
-                                            <Button className=" ms-3" onClick={() => navigate(`/card/${prod.prod_id}`)} variant="outline-secondary">
-                                                Change Size
-                                            </Button></Card.Text>
+                                            {prod.prod_category !== "Apparel" && (
+                                                <Button className=" ms-3" onClick={() => navigate(`/card/${prod.prod_id}`)} variant="outline-secondary">
+                                                    Change Size
+                                                </Button>
+
+                                            )}
+                                        </Card.Text>
                                         <Card.Text style={{ fontSize: "25px", marginTop: "20px" }}><strong>RM</strong> {prod.prod_price?.replace("MYR", "").trim()}</Card.Text>
 
 

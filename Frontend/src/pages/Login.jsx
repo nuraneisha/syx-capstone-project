@@ -9,7 +9,7 @@ import {
     sendEmailVerification,
 } from "firebase/auth";
 import { auth } from "../../firebase";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 export default function Login({ show, setShow }) {
@@ -32,7 +32,6 @@ export default function Login({ show, setShow }) {
         event.preventDefault();
         try {
             await signInWithPopup(auth, provider);
-            const auth = getAuth();
             const unsubscribe = onAuthStateChanged(auth, (user) => {
                 if (user) {
                     handleClose();
@@ -51,7 +50,6 @@ export default function Login({ show, setShow }) {
         setError("");
         try {
             await signInWithEmailAndPassword(auth, email, password)
-            const auth = getAuth();
             const unsubscribe = onAuthStateChanged(auth, (user) => {
                 if (user) {
                     handleClose();

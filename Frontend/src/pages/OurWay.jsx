@@ -14,12 +14,13 @@ export default function OurWay() {
                         <h2 className="mt-3">Company</h2>
                         <h2 style={{ cursor: "pointer", marginTop: "20px", fontWeight: "normal", fontSize: "25px" }} onClick={() => navigate("/about")}>About</h2>
                         <h2 style={{ cursor: "pointer", marginTop: "20px", fontWeight: "normal", fontSize: "25px" }} onClick={() => navigate("/ourWay")}>Our Way</h2>
+                        <h2 style={{ cursor: "pointer", marginTop: "20px", fontWeight: "normal", fontSize: "25px" }} onClick={() => navigate("/review")}>Review</h2>
                     </Col>
 
                     {/* Right Content Section */}
                     <Col xs={12} md={8}>
                         <Row className="gy-4">
-                            {/* Who We Are */}
+
                             <Col xs={12} md={6}>
                                 <Card style={{ backgroundColor: "lightblue" }} className="h-100">
                                     <Card.Body>
@@ -35,7 +36,6 @@ export default function OurWay() {
                                 </Card>
                             </Col>
 
-                            {/* What We Do */}
                             <Col xs={12} md={6}>
                                 <Card style={{ backgroundColor: "lightblue" }} className="h-100">
                                     <Card.Body>
@@ -51,7 +51,7 @@ export default function OurWay() {
                                 </Card>
                             </Col>
 
-                            {/* This is our way */}
+
                             <Col xs={12}>
                                 <Card style={{ backgroundColor: "lightblue" }}>
                                     <Card.Body>

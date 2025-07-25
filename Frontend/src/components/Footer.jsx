@@ -24,6 +24,7 @@ export default function Footer() {
                         <h5>Help</h5>
                         <p className="text-dark mb-1" style={{ cursor: "pointer" }} onClick={() => navigate("/location")}>Contact Us</p>
                         <p className="text-dark mb-1" style={{ cursor: "pointer" }} onClick={() => navigate("/store")}>Find a store</p>
+                        <p className="text-dark mb-1" style={{ cursor: "pointer" }} onClick={() => navigate("/review")}>Review</p>
                     </div>
 
                     {/* Social Icons */}

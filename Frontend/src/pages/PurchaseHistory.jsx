@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import Layout from "../components/Layout";
-import { Container, Row, Col, Card } from "react-bootstrap"
+import { Container, Row, Col, Card, Button } from "react-bootstrap"
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
@@ -61,18 +61,20 @@ export default function PurchaseHistory() {
                                     </Col>
                                     <Col md={9}>
                                         <h5>{item.prod_name}</h5>
-                                        {item.category != "Apparel" ? (
+                                        {item.prod_category != "Apparel" ? (
                                             <>
                                                 <p>Size :{item.sizes}</p>
                                                 <p>Quantity: {item.quantity}</p>
                                                 <p>Price: {item.prod_price}</p>
                                                 <p>Purchased on: {new Date(item.created_at).toLocaleDateString()}</p>
+                                                <Button type="submit" style={{ borderRadius: "10px" }} variant="outline-dark" onClick={() => navigate("/review/form", { state: { product: item, } })}>Write A review</Button>
                                             </>
                                         ) : (
                                             <>
                                                 <p>Quantity: {item.quantity}</p>
                                                 <p>Price: {item.prod_price}</p>
                                                 <p>Purchased on: {new Date(item.created_at).toLocaleDateString()}</p>
+                                                <Button type="submit" variant="outline-dark" onClick={() => navigate("/review/form", { state: { product: item, } })}>Write A review</Button>
                                             </>
                                         )}
                                     </Col>
