@@ -10,7 +10,7 @@ export default function PurchaseHistory() {
     const navigate = useNavigate();
     const fetchUserDetails = async (userId) => {
         try {
-            const response = await fetch(`http://localhost:3001/purchaseHistory/${userId}`)
+            const response = await fetch(`https://syx-backend-project.vercel.app/purchaseHistory/${userId}`)
             if (response.ok) {
                 const data = await response.json();
                 console.log("Fetched user data:", data);

@@ -24,7 +24,7 @@ export default function Cards() {
         if (!id) return;
         const fetchSelectedProduct = async () => {
             try {
-                const response = await fetch(`http://localhost:3001/products/${id}`);
+                const response = await fetch(`https://syx-backend-project.vercel.app/products/${id}`);
                 if (response.ok) {
                     const data = await response.json();
                     setProduct(data);
@@ -57,7 +57,7 @@ export default function Cards() {
                     alert("Please choose a size");
                     return;
                 }
-                const response = await fetch(`http://localhost:3001/products/card/${id}`, {
+                const response = await fetch(`https://syx-backend-project.vercel.app/products/card/${id}`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({

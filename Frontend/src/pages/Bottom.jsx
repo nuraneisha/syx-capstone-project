@@ -8,7 +8,7 @@ export default function Bottoms() {
     const navigate = useNavigate();
     const fetchBottoms = async () => {
         try {
-            const response = await fetch('http://localhost:3001/products/category/Bottoms');
+            const response = await fetch('https://syx-backend-project.vercel.app/products/category/Bottoms');
             if (response.ok) {
                 const data = await response.json();
                 setBottoms(data);

@@ -13,7 +13,7 @@ export default function DeleteAccount() {
     const handleDeleteAccount = async () => {
         try {
 
-            const response = await fetch(`http://localhost:3001/delete/${userId}`, {
+            const response = await fetch(`https://syx-backend-project.vercel.app/delete/${userId}`, {
                 method: "DELETE",
             });
 

@@ -13,7 +13,7 @@ export default function Body() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch("http://localhost:3001/products");
+            const response = await fetch("https://syx-backend-project.vercel.app/products");
             if (response.ok) {
                 const data = await response.json();
                 setProducts(data);
@@ -34,7 +34,7 @@ export default function Body() {
                 return;
             }
             try {
-                const response = await fetch(`http://localhost:3001/products/apparel/${product.prod_id}`, {
+                const response = await fetch(`https://syx-backend-project.vercel.app/products/apparel/${product.prod_id}`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({

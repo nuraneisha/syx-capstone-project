@@ -9,7 +9,7 @@ export default function Tops() {
 
     const fetchTops = async () => {
         try {
-            const response = await fetch('http://localhost:3001/products/category/Tops');
+            const response = await fetch('https://syx-backend-project.vercel.app/products/category/Tops');
             if (response.ok) {
                 const data = await response.json();
                 setTops(data);

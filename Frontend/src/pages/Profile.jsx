@@ -12,7 +12,7 @@ export default function Profile() {
 
     const fetchUserDetails = async (userId) => {
         try {
-            const response = await fetch(`http://localhost:3001/users/${userId}`)
+            const response = await fetch(`https://syx-backend-project.vercel.app/users/${userId}`)
             if (response.ok) {
                 const data = await response.json();
                 console.log("Fetched user data:", data);

@@ -18,7 +18,7 @@ export default function Header({ setShowLogin }) {
         const fetchData = async () => {
             try {
                 //Fetch products
-                const productResponse = await fetch("http://localhost:3001/products");
+                const productResponse = await fetch("https://syx-backend-project.vercel.app/products");
                 if (productResponse.ok) {
                     const productData = await productResponse.json();
                     setProducts(productData);
@@ -28,7 +28,7 @@ export default function Header({ setShowLogin }) {
                 const auth = getAuth();
                 const user = auth.currentUser;
                 if (user) {
-                    const cartResponse = await fetch(`http://localhost:3001/cart/${user.uid}`);
+                    const cartResponse = await fetch(`https://syx-backend-project.vercel.app/cart/${user.uid}`);
                     if (cartResponse.ok) {
                         const cartData = await cartResponse.json();
                         setCartCount(cartData.items.length);

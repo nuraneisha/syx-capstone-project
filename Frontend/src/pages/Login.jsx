@@ -79,7 +79,7 @@ export default function Login({ show, setShow }) {
 
             const user_id = userCredential.user.uid;
 
-            await fetch("http://localhost:3001/users", {
+            await fetch("https://syx-backend-project.vercel.app/users", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

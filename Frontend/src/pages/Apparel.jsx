@@ -12,7 +12,7 @@ export default function Apparel() {
     useEffect(() => {
         const fetchApparel = async () => {
             try {
-                const response = await fetch("http://localhost:3001/products/category/Apparel");
+                const response = await fetch("https://syx-backend-project.vercel.app/products/category/Apparel");
                 if (response.ok) {
                     const data = await response.json();
                     setApparel(data);
@@ -32,7 +32,7 @@ export default function Apparel() {
                 return;
             }
             try {
-                const response = await fetch(`http://localhost:3001/products/apparel/${product.prod_id}`, {
+                const response = await fetch(`https://syx-backend-project.vercel.app/products/apparel/${product.prod_id}`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({

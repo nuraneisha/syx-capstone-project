@@ -15,7 +15,7 @@ export default function ShoppingCart() {
 
     const fetchData = async (userId) => {
         try {
-            const response = await fetch(`http://localhost:3001/cart/${userId}`);
+            const response = await fetch(`https://syx-backend-project.vercel.app/cart/${userId}`);
             if (response.ok) {
                 const data = await response.json();
                 console.log(data);
@@ -38,7 +38,7 @@ export default function ShoppingCart() {
 
     const deleteData = async (id) => {
         try {
-            const response = await fetch(`http://localhost:3001/cart/delete/${id}`, {
+            const response = await fetch(`https://syx-backend-project.vercel.app/cart/delete/${id}`, {
                 method: "DELETE",
             });
             if (response.ok) {
@@ -53,7 +53,7 @@ export default function ShoppingCart() {
     }
     const totalCost = async (userId) => {
         try {
-            const response = await fetch(`http://localhost:3001/cart/checkout/${userId}`)
+            const response = await fetch(`https://syx-backend-project.vercel.app/cart/checkout/${userId}`)
             if (response.ok) {
                 const data = await response.json();
                 setCost(data);
@@ -66,7 +66,7 @@ export default function ShoppingCart() {
 
     const updateCartItem = async (cart_id, quantity, selected) => {
         try {
-            await fetch("http://localhost:3001/cart/select", {
+            await fetch("https://syx-backend-project.vercel.app/cart/select", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -91,7 +91,7 @@ export default function ShoppingCart() {
 
     const fetchSelectedItems = async (user_id) => {
         try {
-            const response = await fetch(`http://localhost:3001/cart/select/${user_id}`)
+            const response = await fetch(`https://syx-backend-project.vercel.app/cart/select/${user_id}`)
             if (response.ok) {
                 const data = await response.json();
                 setSelected(data);
@@ -122,7 +122,7 @@ export default function ShoppingCart() {
         }
         try {
             console.log("Sending to backend:", { items: selected, user_id: userId });
-            const res = await fetch("http://localhost:3001/checkout", {
+            const res = await fetch("https://syx-backend-project.vercel.app/checkout", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
