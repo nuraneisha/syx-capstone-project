@@ -6,7 +6,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 export default function Update() {
     const [update, setUpdate] = useState({});
-    const [data, setData] = useState([]);
+    const [, setData] = useState([]);
     const [userId, setUserId] = useState(null);
     const [mobile, setMobile] = useState("");
     const [address, setAddress] = useState("");

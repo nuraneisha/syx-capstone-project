@@ -28,7 +28,7 @@ export default function Review() {
     }, []);
 
     const fetchNamesForReviews = async (reviewsData) => {
-        const userIds = [...new Set(reviewsData.map((rev) => rev.user_id))]; // Unique user_ids
+        const userIds = [...new Set(reviewsData.map((rev) => rev.user_id))];
         const namesMap = {};
 
         await Promise.all(
@@ -42,6 +42,7 @@ export default function Review() {
                         namesMap[uid] = "Anonymous";
                     }
                 } catch (error) {
+                    console.error("Error in fetching the data", error)
                     console.error("Error fetching name for", uid);
                     namesMap[uid] = "Anonymous";
                 }
