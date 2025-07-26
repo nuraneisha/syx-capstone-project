@@ -8,12 +8,12 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDAchib5SuPxxNTRUB_Zxk49DI8E_Awfws",
-    authDomain: "syx-capstoneproject.firebaseapp.com",
-    projectId: "syx-capstoneproject",
-    storageBucket: "syx-capstoneproject.firebasestorage.app",
-    messagingSenderId: "438448189304",
-    appId: "1:438448189304:web:c3a794d82f4db805ca628d"
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    projectId: import.meta.env.PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.E_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_APP_ID,
 };
 
 // Initialize Firebase
