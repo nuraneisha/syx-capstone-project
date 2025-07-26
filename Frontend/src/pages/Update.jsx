@@ -19,9 +19,9 @@ export default function Update() {
     const fetchUserDetails = async (userId) => {
         try {
             const response = await fetch(`https://syx-backend-project.vercel.app/users/${userId}`);
+            console.log("Response status:", response.status);
             if (response.ok) {
                 const data = await response.json();
-                console.log("Fetched user data:", data);
                 setData(data);
                 setName(data.name || "");
                 setAddress(data.address || "");

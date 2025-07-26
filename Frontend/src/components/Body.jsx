@@ -96,7 +96,7 @@ export default function Body() {
             {/* Section Title */}
             <div className="d-flex justify-content-between align-items-center mt-5 flex-wrap px-4">
                 <h3 className="text-dark">New In</h3>
-                <a href="../Products" style={{ textDecoration: "none" }}>
+                <a href="../Products" style={{ textDecorationColor: "black" }}>
                     <h3 className="text-dark">View All</h3>
                 </a>
             </div>

@@ -14,7 +14,6 @@ export default function About() {
                             <h2 className="mt-3">Company</h2>
                             <h2 style={{ cursor: "pointer", marginTop: "20px", fontWeight: "normal", fontSize: "25px" }} onClick={() => navigate("/about")}>About</h2>
                             <h2 style={{ cursor: "pointer", marginTop: "20px", fontWeight: "normal", fontSize: "25px" }} onClick={() => navigate("/ourWay")}>Our Way</h2>
-                            <h2 style={{ cursor: "pointer", marginTop: "20px", fontWeight: "normal", fontSize: "25px" }} onClick={() => navigate("/review")}>Review</h2>
                         </Col>
 
                         <Col xs={12} md={8}>
